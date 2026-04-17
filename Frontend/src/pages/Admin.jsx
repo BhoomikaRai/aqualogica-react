@@ -18,7 +18,7 @@ const handleSubmit = (e) => {
   formData.append("price", price);
   formData.append("quantity", quantity);
   formData.append("rating", rating);
-  axios.post("http://localhost:5000/addproduct", formData, {
+  axios.post("https://aqualogica-react-backend.onrender.com/addproduct", formData, {
     headers: {
       "Content-Type": "multipart/form-data"
     }
