@@ -8,7 +8,7 @@ const { name } = useParams();
 const [products, setProducts] = useState([]);
 const navigate = useNavigate();
 useEffect(() => {
-axios.get(`http://localhost:5000/search?query=${name}`)
+axios.get(`https://aqualogica-react-backend.onrender.com/search?query=${name}`)
 .then((res) => setProducts(res.data))
 .catch((err) => console.log(err));
 }, [name]);
@@ -21,7 +21,7 @@ return (
 {products.length > 0 ? (
 products.map((product) => (
 <div className="productcard"key={product._id}onClick={() => navigate(`/product/${product._id}`)}>
-<img src={`http://localhost:5000/uploads/${product.imageUpload}`}alt={product.title}className="productimg"/>
+<img src={`https://aqualogica-react-backend.onrender.com/uploads/${product.imageUpload}`}alt={product.title}className="productimg"/>
 <h3>{product.title}</h3>
 <p>Rs.{product.price}</p>
 <p>Rating {product.rating}</p>
