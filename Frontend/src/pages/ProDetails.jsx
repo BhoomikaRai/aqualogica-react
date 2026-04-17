@@ -12,7 +12,7 @@ const [qty,setQty]=useState(1);
 
 
 useEffect(()=>{
-axios.get(`http://localhost:5000/addproduct/${id}`)
+axios.get(`https://aqualogica-react-backend.onrender.com/addproduct/${id}`)
 .then(res=>setProduct(res.data))
 .catch(err=>console.log(err));
 },[id]);
@@ -36,7 +36,7 @@ alert("Please login first");
 navigate("/login");
 return;
 }
-await axios.post("http://localhost:5000/cart", {
+await axios.post("https://aqualogica-react-backend.onrender.com/cart", {
     productId: product._id,
     quantity: qty,
     email: user.email,
@@ -50,7 +50,7 @@ console.error(err);
 
 return (
 <div className="details">
-<img src={`http://localhost:5000/uploads/${product.imageUpload}`}alt={product.title}className="productimage"/>
+<img src={`https://aqualogica-react-backend.onrender.com/uploads/${product.imageUpload}`}alt={product.title}className="productimage"/>
 <h2>{product.title}</h2>
 <p className="price">Rs.{product.price}</p>
 <p>Rating {product.rating}</p>
