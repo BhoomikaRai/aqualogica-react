@@ -1,0 +1,55 @@
+.cartpage {
+    text-align: center;
+    padding: 30px;
+}
+.carttitle {
+    font-size: 30px;
+    margin-bottom: 20px;
+}
+.cartcontainer {
+    display: grid;
+    grid-template-columns: auto auto;
+    gap: 40px;
+    justify-items: center;
+}
+.cartcard {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+} 
+.cartcard img {
+    width: 200px;
+    margin-bottom: 10px;
+}
+.cartdetails h3 {
+    font-size: 20px;
+    margin-bottom: 5px;
+}
+.cartdetails p {
+    font-size: 15px;
+    margin-bottom: 5px;
+
+}
+.qty {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 10px 0;
+}
+.qty button {
+    padding: 5px 12px;
+    font-size: 16px;
+    cursor: pointer;
+}
+.removebtn {
+    padding: 8px 15px;
+    background-color: darkblue;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+.carttotal {
+  margin-top: 30px;
+} 

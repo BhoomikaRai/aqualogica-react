@@ -1,0 +1,25 @@
+.manageorders {
+  padding: 20px;
+}
+.manageorders h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.manageorders table {
+  width: 100%;
+  
+}
+.manageorders th, td {
+  border: 1px solid black;
+  padding: 10px;
+}
+.manageorders th {
+  background-color: black;
+  color: white;
+}
+select {
+  padding: 5px;
+  text-align: center;
+ 
+}

@@ -1,0 +1,109 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: Arial, sans-serif;
+}
+.container {
+  display: flex;
+  height: 100vh;
+}
+.left {
+  flex: 1;
+  background: darkblue;
+  color: white;
+  padding: 60px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.logo {
+  font-size: 32px;
+  margin-bottom: 10px;
+}
+.brand {
+  font-size: 18px;
+  margin-bottom: 30px;
+  opacity: 0.8;
+}
+.welcome {
+  font-size: 25px;
+  margin-bottom: 40px;
+}
+.cards {
+  display: flex;
+  gap: 25px;
+}
+.card {
+  background:none;
+  padding: 25px;
+  border-radius: 20px;
+  width: 220px;
+  text-align: center;
+  border: 2px solid white;
+}
+.card h3 {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+.card p {
+  font-size: 18px;
+  line-height: 1.5;
+}
+.right {
+  flex: 1;
+  background:white;
+  padding: 60px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.right h2 {
+  margin-bottom: 25px;
+  font-size: 30px;
+}
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+.input-box {
+  background: white;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 12px;
+}
+.input-box input {
+  border: none;
+  outline: none;
+  width: 100%;
+  font-size: 20px;
+}
+button {
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  background: darkblue;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+button:hover {
+  background: darkblue;
+}
+.switch {
+  margin-top: 15px;
+  font-size: 20px;
+}
+.switch a {
+  color:darkblue;
+  text-decoration: none;
+  font-weight: bold;
+}
+.switch a:hover {
+  text-decoration: underline;
+}
+

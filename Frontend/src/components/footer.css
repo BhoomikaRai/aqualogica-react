@@ -1,0 +1,75 @@
+.footer {
+  background-color: darkblue;
+  color: white;
+  padding: 60px 0;
+  font-family: Arial, sans-serif;
+}
+.footertop {
+  display: flex;
+  gap: 40px;
+}
+.footerleft {
+  max-width: 300px;
+  margin-left: 50px;
+}
+.footerlogo {
+  font-size: 40px;
+  margin-bottom: 30px;
+  font-weight: bold;
+}
+.socialmedia {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 20px;
+
+}
+.socialmedia img {
+  width: 40px;
+  height: 40px;
+  border: 1px solid white;
+  border-radius: 50%;
+  margin-bottom: 20px;
+}
+.footercolumn {
+  flex: 1;
+  min-width: 180px;
+}
+.footercolumn h3 {
+  margin-bottom: 20px;
+  font-size: 30px;
+}
+.footercolumn p {
+  margin-bottom: 12px;
+  font-size: 20px;
+}
+.app {
+  margin-bottom: 20px;
+  font-size: 20px;
+}
+.appbuttons img {
+  width: 200px;
+  margin-bottom: 20px;
+}
+.footerbottom {
+  margin-top: 40px;
+  padding-top: 20px;
+  display: flex;
+  font-size: 20px;
+  margin-left: 30px;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+.payment {
+  text-align: right;
+}
+.payment p {
+  margin-bottom: 10px;
+  font-size: 20px;
+}
+.paymenticons {
+  display: flex;
+  gap: 10px;
+}
+.paymenticons img {
+  width: 70px;
+}

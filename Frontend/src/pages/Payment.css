@@ -1,0 +1,45 @@
+.paymentpage {
+  width: 100%;
+  height: 50%;
+  display: flex;
+  justify-content: center;
+  margin-top: 40px;
+  margin-bottom: 40px;
+}
+.paymentbox {
+  width: 60%;
+  padding: 30px;
+  border: 5px solid black;
+  border-radius: 10px;
+  background: white;
+}
+.paymentbox h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+.paymentbox h3 {
+  margin-top: 20px;
+}
+.paymentbox p {
+  margin: 5px 0;
+}
+.paymentbox label {
+  display: block;
+  margin: 10px 0;
+  cursor: pointer;
+}
+.upiinput {
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+}
+.placebtn {
+  width: 100%;
+  padding: 12px;
+  margin-top: 20px;
+  background: darkblue;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}

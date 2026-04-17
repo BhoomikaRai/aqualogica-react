@@ -1,0 +1,9 @@
+.order-history {
+  padding: 20px;
+  text-align: center;
+}
+.order-item p{
+    margin: 5px 0;
+    font-size: 20px;
+    margin-top: 20px;
+}
