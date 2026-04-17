@@ -16,7 +16,7 @@ navigate("/dashboard");
 return;
 }
 
-axios.post("http://localhost:5000/login", { email, password })
+axios.post("https://aqualogica-react-backend.onrender.com/login", { email, password })
 .then((result) => {
 console.log(result);
 if (result.data === "Success") {

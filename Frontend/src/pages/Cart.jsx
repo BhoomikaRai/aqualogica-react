@@ -11,7 +11,7 @@ const fetchCart = async () => {
 try {
 const user = JSON.parse(localStorage.getItem("user"));
 if (!user) return;
-const res = await axios.get(`http://localhost:5000/cart?email=${user.email}`);
+const res = await axios.get(`https://aqualogica-react-backend.onrender.com/cart?email=${user.email}`);
 setCart(Array.isArray(res.data) ? res.data : []);
 } catch (err) {
       console.error(err);
@@ -31,7 +31,7 @@ fetchCart();
 const removeItem = async (id) => {
 try {
 const user = JSON.parse(localStorage.getItem("user"));
-await axios.delete(`http://localhost:5000/cart/${id}?email=${user.email}`);
+await axios.delete(`https://aqualogica-react-backend.onrender.com/cart/${id}?email=${user.email}`);
 fetchCart();
 } catch (err) {
 console.error(err);
@@ -41,7 +41,7 @@ console.error(err);
 const increaseQty = async (item) => {
 try {
 const user = JSON.parse(localStorage.getItem("user"));
-await axios.put(`http://localhost:5000/cart/${item._id}?email=${user.email}`,{ quantity: item.quantity + 1 });
+await axios.put(`https://aqualogica-react-backend.onrender.com/cart/${item._id}?email=${user.email}`,{ quantity: item.quantity + 1 });
 fetchCart();
 } catch (err) {
 console.error(err);
@@ -52,7 +52,7 @@ const decreaseQty = async (item) => {
 if (item.quantity <= 1) return;
 try {
 const user = JSON.parse(localStorage.getItem("user"));
-await axios.put(`http://localhost:5000/cart/${item._id}?email=${user.email}`,{ quantity: item.quantity - 1 });
+await axios.put(`https://aqualogica-react-backend.onrender.com/cart/${item._id}?email=${user.email}`,{ quantity: item.quantity - 1 });
 fetchCart();
 } catch (err) {
     console.error(err);
@@ -74,7 +74,7 @@ return (
 <div className="cartcontainer">
 {cart.map((item) => (
 <div className="cartcard" key={item._id}>
-<img src={`http://localhost:5000/uploads/${item.productId?.imageUpload}`}alt={item.productId?.title}/>
+<img src={`https://aqualogica-react-backend.onrender.com/uploads/${item.productId?.imageUpload}`}alt={item.productId?.title}/>
 
 <div className="cartdetails">
 <h3>{item.productId?.title}</h3>

@@ -11,7 +11,7 @@ const user = JSON.parse(localStorage.getItem("user"));
 
 useEffect(() => {
 if (!user) return;
-axios.get(`http://localhost:5000/order?email=${user.email}`)
+axios.get(`https://aqualogica-react-backend.onrender.com/order?email=${user.email}`)
 .then((response) => {
     setOrders(response.data);
 })

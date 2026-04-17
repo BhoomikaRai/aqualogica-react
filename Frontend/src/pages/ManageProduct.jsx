@@ -10,7 +10,7 @@ const navigate=useNavigate();
 
 useEffect(()=>{
 
-axios.get("http://localhost:5000/addproduct")
+axios.get("https://aqualogica-react-backend.onrender.com/addproduct")
 .then(res=>setProducts(res.data))
 
 .catch(err=>console.log(err));
@@ -20,7 +20,7 @@ const deleteProduct = async(id)=>{
 if(window.confirm("Are you sure you want to delete this product?"))
 {
 try{
-  await axios.delete(`http://localhost:5000/addproduct/${id}`);
+  await axios.delete(`https://aqualogica-react-backend.onrender.com/addproduct/${id}`);
   alert("Product deleted successfully");
   setProducts(products.filter(product=>product._id!==id));
       
@@ -55,7 +55,7 @@ return (
 <td>{product.price}</td>
 <td>{product.quantity}</td>
 <td>{product.rating}</td>
-<td><img src={`http://localhost:5000/uploads/${product.imageUpload}`} alt={product.title} /></td>
+<td><img src={`https://aqualogica-react-backend.onrender.com/uploads/${product.imageUpload}`} alt={product.title} /></td>
 <td>
 <button className="edit-btn" onClick={()=>navigate(`/EditProduct/${product._id}`)} >Edit </button>
 <button className="delete-btn"onClick={()=>deleteProduct(product._id)}>Delete</button>

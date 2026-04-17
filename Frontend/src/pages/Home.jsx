@@ -12,8 +12,8 @@ const location = useLocation();
 const category = new URLSearchParams(location.search).get("category");
 useEffect(() => {
 const url = category
-? `http://localhost:5000/search?query=${category}`
-: `http://localhost:5000/addproduct`;
+? `https://aqualogica-react-backend.onrender.com/search?query=${category}`
+: `https://aqualogica-react-backend.onrender.com/addproduct`;
 
 axios.get(url)
 .then((res) => setProducts(res.data))

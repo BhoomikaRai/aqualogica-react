@@ -24,7 +24,7 @@ if (!user) {
   navigate("/login");
   return;
 }
-axios.get(`http://localhost:5000/cart?email=${user.email}`)
+axios.get(`https://aqualogica-react-backend.onrender.com/cart?email=${user.email}`)
 .then((res) => {
 setCart(res.data);
 const total = res.data.reduce(
