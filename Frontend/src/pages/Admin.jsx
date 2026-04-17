@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-import "./admin.css";
+import "./Admin.css";
 
 function Admin() {
 const [title, setTitle] = useState("");
