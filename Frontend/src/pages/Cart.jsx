@@ -74,7 +74,7 @@ return (
 <div className="cartcontainer">
 {cart.map((item) => (
 <div className="cartcard" key={item._id}>
-<img src={`http://localhost:5000/uploads/${item.productId?.imageUpload}`}alt={item.productId?.title}/>
+<img src={`https://aqualogica-react-backend.onrender.com/uploads/${item.productId?.imageUpload}`}alt={item.productId?.title}/>
 
 <div className="cartdetails">
 <h3>{item.productId?.title}</h3>
