@@ -17,7 +17,7 @@ fetchOrders();
 
 const deleteOrder = async (id) => {
 try {
-await axios.delete(`http://localhost:5000/order/${id}`);
+await axios.delete(`https://aqualogica-react-backend.onrender.com/order/${id}`);
 fetchOrders();
 } catch (err) {
 console.error(err);
@@ -26,7 +26,7 @@ console.error(err);
 
 const updateStatus = async (id, status) => {
 try {
-await axios.put(`http://localhost:5000/order/${id}`,{ status });
+await axios.put(`https://aqualogica-react-backend.onrender.com/order/${id}`,{ status });
 fetchOrders();
 } catch (err) {
 console.error(err);
