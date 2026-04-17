@@ -16,7 +16,7 @@ alert("Please login first");
 navigate("/login");
 return;
 }
-axios.get(`http://localhost:5000/cart?email=${user.email}`)
+axios.get(`https://aqualogica-react-backend.onrender.com/cart?email=${user.email}`)
 .then((res) => setCart(res.data))
 .catch((err) => console.log(err));
 }, []);
@@ -32,7 +32,7 @@ const totalAmount = cart.reduce(
 (acc, item) => acc + item.productId.price * item.quantity,0);
 
 if (method === "COD") {
-await axios.post("http://localhost:5000/order", {
+await axios.post("https://aqualogica-react-backend.onrender.com/order", {
 products,
 totalAmount,
 address,
@@ -46,7 +46,7 @@ return;
 }
 
 if (method === "UPI") {
-await axios.post("http://localhost:5000/order", {
+await axios.post("https://aqualogica-react-backend.onrender.com/order", {
 products,
 totalAmount,
 address,
@@ -86,7 +86,7 @@ razorpay_signature: response.razorpay_signature,
 );
 
 if (verifyRes.data.success) {
-await axios.post("http://localhost:5000/order", {
+await axios.post("https://aqualogica-react-backend.onrender.com/order", {
 products,
 totalAmount,
 address,
