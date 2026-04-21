@@ -50,7 +50,7 @@ console.error(err);
 
 return (
 <div className="details">
-<img src={`http://localhost:5000/uploads/${product.imageUpload}`}alt={product.title}className="productimage"/>
+<img src={product.imageUpload} alt={product.title} className="productimage"/>
 <h2>{product.title}</h2>
 <p className="price">Rs.{product.price}</p>
 <p>Rating {product.rating}</p>
