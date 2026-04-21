@@ -55,7 +55,7 @@ return (
 <td>{product.price}</td>
 <td>{product.quantity}</td>
 <td>{product.rating}</td>
-<td><img src={`http://localhost:5000/uploads/${product.imageUpload}`} alt={product.title} /></td>
+<td><img src={product.imageUpload} alt={product.title} /></td>
 <td>
 <button className="edit-btn" onClick={()=>navigate(`/EditProduct/${product._id}`)} >Edit </button>
 <button className="delete-btn"onClick={()=>deleteProduct(product._id)}>Delete</button>

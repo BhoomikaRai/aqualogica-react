@@ -11,6 +11,28 @@ const UserModel = require("./models/User");
 const OrderModel = require("./models/Order");
 const crypto = require("crypto");
 
+const { v2: cloudinary } = require("cloudinary");
+const { CloudinaryStorage } = require("multer-storage-cloudinary");
+
+// Cloudinary config
+cloudinary.config({
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+  
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET,
+});
+
+// Storage
+const storage = new CloudinaryStorage({
+  cloudinary: cloudinary,
+  params: {
+    folder: "products",
+  },
+});
+
+const upload = multer({ storage });
+
+
 const app = express();
 app.use(express.json());
 app.use(cors());
@@ -58,12 +80,12 @@ const mailOptions = {
 await transporter.sendMail(mailOptions);
 };
 
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => cb(null, "uploads/"),
-  filename: (req, file, cb) =>
-    cb(null, Date.now() + "-" + file.originalname),
-});
-const upload = multer({ storage });
+// const storage = multer.diskStorage({
+//   destination: (req, file, cb) => cb(null, "uploads/"),
+//   filename: (req, file, cb) =>
+//     cb(null, Date.now() + "-" + file.originalname),
+// });
+// const upload = multer({ storage });
 
 app.post('/login', (req, res) => {
 const { email, password } = req.body;
@@ -93,7 +115,7 @@ res.status(500).json(err);
 app.post("/addproduct", upload.single("image"), async (req, res) => {
   const productDetail = {
     title: req.body.title,
-    imageUpload: req.file.filename,
+    imageUpload: req.file.path,
     category: req.body.category,
     price: req.body.price,
     quantity: req.body.quantity,
@@ -133,7 +155,7 @@ const updateData = {
   quantity,
   };
 if (req.file) {
-updateData.imageUpload = req.file.filename;
+updateData.imageUpload = req.file.path;
 }
 const updated = await ProductModel.findByIdAndUpdate(
 req.params.id,
