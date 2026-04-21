@@ -19,7 +19,7 @@ function EditProduct() {
 
 
 useEffect(()=>{
-axios.get(`https://aqualogica-react-backend.onrender.com/addproduct/${id}`)
+axios.get(`http://localhost:5000/addproduct/${id}`)
 .then(res=>setProduct(res.data))
 .catch(err=>console.log(err));
 },[id]);

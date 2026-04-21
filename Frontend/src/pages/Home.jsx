@@ -12,8 +12,8 @@ const location = useLocation();
 const category = new URLSearchParams(location.search).get("category");
 useEffect(() => {
 const url = category
-? `https://aqualogica-react-backend.onrender.com/search?query=${category}`
-: `https://aqualogica-react-backend.onrender.com/addproduct`;
+? `http://localhost:5000/search?query=${category}`
+: `http://localhost:5000/addproduct`;
 
 axios.get(url)
 .then((res) => setProducts(res.data))
@@ -31,42 +31,42 @@ return (
 <div className="home">
 <div className="categories">
 <div className="categoryitem">
-<img src="cat1.png" alt="Sunscreen"onClick={() => navigate("/category/Sunscreen")} />
+<img src="/cat1.png" alt="Sunscreen"onClick={() => navigate("/category/Sunscreen")} />
 <p>Sunscreen</p>
 </div>
 
 <div className="categoryitem">
-<img src="cat2.png" alt="Fragrance"onClick={() => navigate("/category/Fragrance")} />
+<img src="/cat2.png" alt="Fragrance"onClick={() => navigate("/category/Fragrance")} />
 <p>Fragrance</p>
 </div>
 
 <div className="categoryitem">
-<img src="cat3.png" alt="Moisturizer"onClick={() => navigate("/category/Moisturizer")} />
+<img src="/cat3.png" alt="Moisturizer"onClick={() => navigate("/category/Moisturizer")} />
 <p>Moisturizer</p>
 </div>
 
 <div className="categoryitem">
-<img src="cat4.png" alt="Cleanser"onClick={() => navigate("/category/Cleanser")} />
+<img src="/cat4.png" alt="Cleanser"onClick={() => navigate("/category/Cleanser")} />
 <p>Cleanser</p>
 </div>
 
 <div className="categoryitem">
-<img src="cat5.png" alt="Serum"onClick={() => navigate("/category/Serum")} />
+<img src="/cat5.png" alt="Serum"onClick={() => navigate("/category/Serum")} />
 <p>Serum</p>
 </div>
 
 <div className="categoryitem">
-<img src="cat6.png" alt="Toners"onClick={() => navigate("/category/Toners")} />
+<img src="/cat6.png" alt="Toners"onClick={() => navigate("/category/Toners")} />
 <p>Toners</p>
 </div>
 
 <div className="categoryitem">
-<img src="cat7.png" alt="Lipbalm"onClick={() => navigate("/category/Lipbalm")} />
+<img src="/cat7.png" alt="Lipbalm"onClick={() => navigate("/category/Lipbalm")} />
 <p>Lipbalm</p>
 </div>
 
 <div className="categoryitem">
-<img src="cat8.png" alt="Dew Drops"onClick={() => navigate("/category/Dew Drops")} />
+<img src="/cat8.png" alt="Dew Drops"onClick={() => navigate("/category/Dew Drops")} />
 <p>Dew Drops</p>
 </div>
 </div>
@@ -74,10 +74,10 @@ return (
 <Carousel responsive={responsive} 
 autoPlay autoPlaySpeed={2000}
  infinite>
-<div className="slide"><img src="pro1.png" alt="" /></div>
-<div className="slide"><img src="pro2.png" alt="" /></div>
-<div className="slide"><img src="pro3.png" alt="" /></div>
-<div className="slide"><img src="pro4.png" alt="" /></div>
+<div className="slide"><img src="/pro1.png" alt="" /></div>
+<div className="slide"><img src="/pro2.png" alt="" /></div>
+<div className="slide"><img src="/pro3.png" alt="" /></div>
+<div className="slide"><img src="/pro4.png" alt="" /></div>
 </Carousel>
 
 <div className="buttons">
@@ -109,7 +109,7 @@ No products found for "{category}"
 )}
 </div>
 <div className="water"onClick={()=>navigate("/water-for-all")}>
-<img src="water.png" alt="Water" />
+<img src="/water.png" alt="Water" />
 </div>
 </div>
 );

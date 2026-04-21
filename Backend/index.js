@@ -16,7 +16,11 @@ app.use(express.json());
 app.use(cors());
 app.use("/uploads", express.static("uploads"));
 
-mongoose.connect(process.env.MONGO_URI);
+mongoose.connect(process.env.MONGO_URI)
+.then(() => console.log("MongoDB connected successfully"))
+.catch((err) => console.log("mongoDB connection error:",err));
+
+// mongoose.connect("mongodb://localhost:27017/user");
 
 const transporter = nodemailer.createTransport({
   service: "gmail",
