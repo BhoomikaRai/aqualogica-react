@@ -10,7 +10,7 @@ const [password, setPassword] = useState("");
 const navigate = useNavigate();
 const handleSubmit = (e) => {
 e.preventDefault();
-axios.post('http://localhost:5000/register',{name,email,password})
+axios.post(`${import.meta.env.VITE_API_URL}/register`, {name,email,password})
 .then(result => {
 console.log(result);
 navigate("/login");

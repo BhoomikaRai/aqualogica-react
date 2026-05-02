@@ -19,7 +19,7 @@ function EditProduct() {
 
 
 useEffect(()=>{
-axios.get(`http://localhost:5000/addproduct/${id}`)
+axios.get(`${import.meta.env.VITE_API_URL}/addproduct/${id}`)
 .then(res=>setProduct(res.data))
 .catch(err=>console.log(err));
 },[id]);
@@ -39,7 +39,7 @@ const handleSubmit = (e) => {
   formData.append("price",product.price);
   formData.append("quantity",product.quantity);
   formData.append("rating",product.rating);
-  axios.put(`http://localhost:5000/addproduct/${id}`, formData)
+  axios.put(`${import.meta.env.VITE_API_URL}/addproduct/${id}`, formData)
 .then(() => {
 alert("Product Updated Successfully");
 navigate("/products");

@@ -27,7 +27,7 @@ if (!user) {
   navigate("/login");
   return;
 }
-axios.get(`http://localhost:5000/cart?email=${user.email}`)
+axios.get(`${import.meta.env.VITE_API_URL}/cart?email=${user.email}`)
 .then((res) => {
 setCart(res.data);
 const total = res.data.reduce(

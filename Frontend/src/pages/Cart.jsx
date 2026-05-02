@@ -11,7 +11,7 @@ const fetchCart = async () => {
 try {
 const user = JSON.parse(localStorage.getItem("user"));
 if (!user) return;
-const res = await axios.get(`http://localhost:5000/cart?email=${user.email}`);
+const res = await axios.get(`${import.meta.env.VITE_API_URL}/cart?email=${user.email}`);
 setCart(Array.isArray(res.data) ? res.data : []);
 } catch (err) {
       console.error(err);
@@ -31,7 +31,8 @@ fetchCart();
 const removeItem = async (id) => {
 try {
 const user = JSON.parse(localStorage.getItem("user"));
-await axios.delete(`http://localhost:5000/cart/${id}?email=${user.email}`);
+await axios.delete(`
+    /cart/${id}?email=${user.email}`);
 fetchCart();
 } catch (err) {
 console.error(err);
@@ -41,7 +42,7 @@ console.error(err);
 const increaseQty = async (item) => {
 try {
 const user = JSON.parse(localStorage.getItem("user"));
-await axios.put(`http://localhost:5000/cart/${item._id}?email=${user.email}`,{ quantity: item.quantity + 1 });
+await axios.put(`${import.meta.env.VITE_API_URL}/cart/${item._id}?email=${user.email}`,{ quantity: item.quantity + 1 });
 fetchCart();
 } catch (err) {
 console.error(err);
@@ -52,7 +53,7 @@ const decreaseQty = async (item) => {
 if (item.quantity <= 1) return;
 try {
 const user = JSON.parse(localStorage.getItem("user"));
-await axios.put(`http://localhost:5000/cart/${item._id}?email=${user.email}`,{ quantity: item.quantity - 1 });
+await axios.put(`${import.meta.env.VITE_API_URL}/cart/${item._id}?email=${user.email}`,{ quantity: item.quantity - 1 });
 fetchCart();
 } catch (err) {
     console.error(err);

@@ -6,7 +6,7 @@ function ManageOrder() {
 const [orders, setOrders] = useState([]);
 
 const fetchOrders = () => {
-axios.get("http://localhost:5000/order")
+axios.get(`${import.meta.env.VITE_API_URL}/order`)
      .then((res) => setOrders(res.data))
      .catch((err) => console.log(err));
 };
@@ -17,7 +17,7 @@ fetchOrders();
 
 const deleteOrder = async (id) => {
 try {
-await axios.delete(`http://localhost:5000/order/${id}`);
+await axios.delete(`${import.meta.env.VITE_API_URL}/order/${id}`);
 fetchOrders();
 } catch (err) {
 console.error(err);
@@ -26,7 +26,7 @@ console.error(err);
 
 const updateStatus = async (id, status) => {
 try {
-await axios.put(`http://localhost:5000/order/${id}`,{ status });
+await axios.put(`${import.meta.env.VITE_API_URL}/order/${id}`,{ status });
 fetchOrders();
 } catch (err) {
 console.error(err);

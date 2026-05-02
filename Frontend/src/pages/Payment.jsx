@@ -18,7 +18,7 @@ navigate("/login");
 return;
 }
 
-axios.get(`http://localhost:5000/cart?email=${user.email}`)
+axios.get(`${import.meta.env.VITE_API_URL}/cart?email=${user.email}`)
 .then((res) => setCart(res.data))
 .catch((err) => console.log(err));
 }, []);
@@ -40,7 +40,7 @@ quantity: item.quantity,
       }));
 
 if (method === "COD") {
-await axios.post("http://localhost:5000/order", {
+await axios.post(`${import.meta.env.VITE_API_URL}/order`, {
 products,
 totalAmount,
 address,
@@ -55,7 +55,7 @@ return;
 }
 
 if (method === "UPI") {
-await axios.post("http://localhost:5000/order", {
+await axios.post(`${import.meta.env.VITE_API_URL}/order`, {
 products,
 totalAmount,
 address,
@@ -72,7 +72,7 @@ return;
 
 if (method === "ONLINE") {
 const { data } = await axios.post(
-"http://localhost:5000/create-order",{ amount: totalAmount }
+`${import.meta.env.VITE_API_URL}/create-order`,{ amount: totalAmount }
 );
 
 const options = {
@@ -86,7 +86,7 @@ description: "Order Payment",
  handler: async function (response) {
 try {
 const verifyRes = await axios.post(
-"http://localhost:5000/verify-payment",
+`${import.meta.env.VITE_API_URL}/verify-payment`,
 {
 razorpay_order_id: data.id,
 razorpay_payment_id: response.razorpay_payment_id,
@@ -95,7 +95,7 @@ razorpay_signature: response.razorpay_signature,
 );
 
 if (verifyRes.data.success) {
-await axios.post("http://localhost:5000/order", {
+await axios.post(`${import.meta.env.VITE_API_URL}/order`, {
 products,
 totalAmount,
 address,

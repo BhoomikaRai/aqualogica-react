@@ -16,7 +16,7 @@ navigate("/dashboard");
 return;
 }
 
-axios.post("http://localhost:5000/login", { email, password })
+axios.post(`${import.meta.env.VITE_API_URL}/login`, { email, password })
 .then((result) => {
 console.log(result);
 if (result.data === "Success") {

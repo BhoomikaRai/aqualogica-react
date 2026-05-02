@@ -12,8 +12,8 @@ const location = useLocation();
 const category = new URLSearchParams(location.search).get("category");
 useEffect(() => {
 const url = category
-? `http://localhost:5000/search?query=${category}`
-: `http://localhost:5000/addproduct`;
+? `${import.meta.env.VITE_API_URL}/search?query=${category}`
+: `${import.meta.env.VITE_API_URL}/addproduct`;
 
 axios.get(url)
 .then((res) => setProducts(res.data))

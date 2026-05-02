@@ -8,7 +8,7 @@ const { name } = useParams();
 const [products, setProducts] = useState([]);
 const navigate = useNavigate();
 useEffect(() => {
-axios.get(`http://localhost:5000/search?query=${name}`)
+axios.get(`${import.meta.env.VITE_API_URL}/search?query=${name}`)
 .then((res) => setProducts(res.data))
 .catch((err) => console.log(err));
 }, [name]);

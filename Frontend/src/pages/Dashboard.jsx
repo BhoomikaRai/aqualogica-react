@@ -17,8 +17,8 @@
 
 // const fetchData = async () => {
 // try {
-// const orderRes = await axios.get("http://localhost:5000/order");
-// const userRes = await axios.get("http://localhost:5000/users");
+// const orderRes = await axios.get(`${import.meta.env.VITE_API_URL}/order`);
+// const userRes = await axios.get(`${import.meta.env.VITE_API_URL}/users`);
 
 // setOrders(orderRes.data);
 // setUsers(userRes.data);
@@ -142,8 +142,8 @@ fetchData();
 
 const fetchData = async () => {
 try {
-const orderRes = await axios.get("http://localhost:5000/order");
-const userRes = await axios.get("http://localhost:5000/users");
+const orderRes = await axios.get(`${import.meta.env.VITE_API_URL}/order`);
+const userRes = await axios.get(`${import.meta.env.VITE_API_URL}/users`);
 setOrders(orderRes.data);
 setUsers(userRes.data);
 } catch (err) {

@@ -10,7 +10,7 @@ const navigate=useNavigate();
 
 useEffect(()=>{
 
-axios.get("http://localhost:5000/addproduct")
+axios.get(`${import.meta.env.VITE_API_URL}/addproduct`)
 .then(res=>setProducts(res.data))
 
 .catch(err=>console.log(err));
@@ -20,7 +20,7 @@ const deleteProduct = async(id)=>{
 if(window.confirm("Are you sure you want to delete this product?"))
 {
 try{
-  await axios.delete(`http://localhost:5000/addproduct/${id}`);
+  await axios.delete(`${import.meta.env.VITE_API_URL}/addproduct/${id}`);
   alert("Product deleted successfully");
   setProducts(products.filter(product=>product._id!==id));
       

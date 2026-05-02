@@ -12,7 +12,7 @@ const [qty,setQty]=useState(1);
 
 
 useEffect(()=>{
-axios.get(`http://localhost:5000/addproduct/${id}`)
+axios.get(`${import.meta.env.VITE_API_URL}/addproduct/${id}`)
 .then(res=>setProduct(res.data))
 .catch(err=>console.log(err));
 },[id]);
@@ -36,7 +36,7 @@ alert("Please login first");
 navigate("/login");
 return;
 }
-await axios.post("http://localhost:5000/cart", {
+await axios.post(`${import.meta.env.VITE_API_URL}/cart`, {
     productId: product._id,
     quantity: qty,
     email: user.email,
