@@ -21,7 +21,7 @@ return (
 {products.length > 0 ? (
 products.map((product) => (
 <div className="productcard"key={product._id}onClick={() => navigate(`/product/${product._id}`)}>
-<img src={`http://localhost:5000/uploads/${product.imageUpload}`}alt={product.title}className="productimg"/>
+<img src={product.imageUpload} alt={product.title} className="productimg"/>
 <h3>{product.title}</h3>
 <p>Rs.{product.price}</p>
 <p>Rating {product.rating}</p>

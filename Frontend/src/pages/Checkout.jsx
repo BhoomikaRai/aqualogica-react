@@ -7,6 +7,9 @@ function Checkout() {
 const navigate = useNavigate();
 const [cart, setCart] = useState([]);
 const [totalPrice, setTotalPrice] = useState(0);
+const gstRate = 0.18;
+const gstAmount = totalPrice * gstRate;
+const finalTotal = totalPrice + gstAmount;
 const [address, setAddress] = useState({
   pincode: "",
   city: "",
@@ -82,7 +85,10 @@ cart.map((item) => (
 ))
 )}
 <hr />
-<h2>Total:Rs{totalPrice}</h2>
+{/* <h2>Total:Rs{totalPrice}</h2> */}
+<p>Subtotal: ₹{totalPrice}</p>
+<p>GST (18%): ₹{gstAmount.toFixed(2)}</p>
+<h2>Total: ₹{finalTotal.toFixed(2)}</h2>
 </div>
 </div>
 );

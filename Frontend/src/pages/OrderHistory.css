@@ -2,8 +2,27 @@
   padding: 20px;
   text-align: center;
 }
-.order-item p{
-    margin: 5px 0;
-    font-size: 20px;
-    margin-top: 20px;
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+th {
+  background-color: darkblue;
+  color: white;
+  padding: 10px;
+  font-size: 20px;
+}
+td {
+  padding: 10px;
+  border: 1px solid grey;
+  font-size: 18px;
+  text-align: center;
+}
+.product-img {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 5px;
+
 }

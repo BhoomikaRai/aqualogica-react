@@ -11,10 +11,12 @@ const UserModel = require("./models/User");
 const OrderModel = require("./models/Order");
 const crypto = require("crypto");
 
+const puppeteer = require("puppeteer");
+
 const { v2: cloudinary } = require("cloudinary");
 const { CloudinaryStorage } = require("multer-storage-cloudinary");
 
-// Cloudinary config
+
 cloudinary.config({
   cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
   
@@ -22,7 +24,7 @@ cloudinary.config({
   api_secret: process.env.CLOUDINARY_API_SECRET,
 });
 
-// Storage
+
 const storage = new CloudinaryStorage({
   cloudinary: cloudinary,
   params: {
@@ -31,8 +33,7 @@ const storage = new CloudinaryStorage({
 });
 
 const upload = multer({ storage });
-
-
+ 
 const app = express();
 app.use(express.json());
 app.use(cors());
@@ -51,34 +52,226 @@ const transporter = nodemailer.createTransport({
     pass: process.env.EMAIL_PASS,
   },
 });
+const generateHTML = (order) => {
 
-const sendOrderEmail = async (email, status, orderId) => {
+const subtotal = order.totalAmount / 1.18;
+const cgst = subtotal * 0.09;
+const sgst = subtotal * 0.09;
+const total = order.totalAmount;
+
+return `
+<html>
+<head>
+<style>
+body { font-family: Arial; padding: 25px; }
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid #ddd;
+  padding-bottom: 10px;
+}
+
+.logo img {
+  height: 50px;
+}
+
+.company {
+  text-align: right;
+  font-size: 12px;
+}
+
+h1 {
+  text-align: center;
+  margin-top: 20px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+th {
+  background-color: #f2f2f2;
+}
+
+th, td {
+  border: 1px solid #ccc;
+  padding: 10px;
+  text-align: center;
+}
+
+.right {
+  text-align: right;
+  margin-top: 20px;
+}
+
+.total {
+  font-size: 18px;
+  font-weight: bold;
+}
+</style>
+</head>
+
+<body>
+
+<div class="header">
+<div class="logo">
+<h2>Aqualogica</h2>
+</div>
+
+<div class="company">
+<b>Aqualogica</b><br/>
+Bangalore, India<br/>
+GSTIN: 29ABCDE1234F1Z5<br/>
+Email: support@aqualogica.com
+</div>
+</div>
+
+
+<h1>GST INVOICE</h1>
+
+<div style="display:flex; justify-content:space-between; margin-top:20px;">
+
+<div>
+<h3>Billed To:</h3>
+<p><b>${order.address.name}</b></p>
+<p>
+${order.address.house}, ${order.address.area}<br/>
+${order.address.city}, ${order.address.state} - ${order.address.pincode}
+</p>
+<p>Phone: ${order.address.phone}</p>
+<p>Email: ${order.address.email}</p>
+</div>
+
+<div style="text-align:right;">
+<p><b>Order ID:</b> ${order._id}</p>
+<p><b>Date:</b> ${new Date(order.createdAt).toLocaleDateString()}</p>
+<p><b>Payment:</b> ${order.paymentMethod}</p>
+</div>
+
+</div>
+
+<table>
+<tr>
+<th>#</th>
+<th>Product</th>
+<th>Price </th>
+<th>Qty</th>
+<th>Total </th>
+</tr>
+
+${order.products.map((p, i) => {
+const name = p.productId?.title || "Product";
+const price = p.productId?.price || 0;
+const itemTotal = price * p.quantity;
+
+return `
+<tr>
+<td>${i + 1}</td>
+<td>${name}</td>
+<td>${price}</td>
+<td>${p.quantity}</td>
+<td>${itemTotal}</td>
+</tr>
+`;
+}).join("")}
+</table>
+
+<div class="right">
+<p>Subtotal: ₹${subtotal.toFixed(2)}</p>
+<p>CGST (9%): ₹${cgst.toFixed(2)}</p>
+<p>SGST (9%): ₹${sgst.toFixed(2)}</p>
+<h2>Total: ₹${total.toFixed(2)}</h2>
+</div>
+
+<p>Thank you for shopping with us!</p>
+
+</body>
+</html>
+`;
+};
+
+const generateInvoice = async (order) => {
+const browser = await puppeteer.launch({
+args: ["--no-sandbox", "--disable-setuid-sandbox"],
+});
+const page = await browser.newPage();
+const html = generateHTML(order);
+await page.setContent(html, { waitUntil: "domcontentloaded" });
+const pdfBuffer = await page.pdf({format: "A4",});
+await browser.close();
+return pdfBuffer;
+};
+
+const sendOrderEmail = async (email, status, order) => {
 let subject = "";
 let message = "";
 
 if (status === "Placed") {
-  subject = "From Aqualogica: Order Confirmed ";
-  message = `Your order has been placed successfully. We will notify you once it is shipped.`;
+subject = "Order Confirmed with Invoice";
+message = "Your order has been placed successfully. Invoice attached.";
 }
 
 if (status === "Shipped") {
-  subject = "From Aqualogica: Order Shipped";
-  message = ` Your order has been shipped. You can expect delivery soon!`;
+subject = "Order Shipped";
+message = "Your order has been shipped.";
 }
 if (status === "Delivered") {
-  subject = "From Aqualogica: Order Delivered";
-  message = `Your order  has been delivered.Thank you for shopping with us!`;
+subject = "Order Delivered";
+message = "Your order has been delivered.";
 }
 
 
+let attachments = [];
+if (status === "Placed") {
+const pdfBuffer = await generateInvoice(order);
+attachments.push({
+filename: `invoice_${order._id}.pdf`,
+content: pdfBuffer,
+    });
+  }
+
 const mailOptions = {
-  from: "bhoomikarai147@gmail.com",
-  to: email,
-  subject,
-  text: message,
+from: process.env.EMAIL_USER,
+to: email,
+subject,
+text: message,
+attachments,
 };
+
 await transporter.sendMail(mailOptions);
 };
+
+// const sendOrderEmail = async (email, status, orderId) => {
+// let subject = "";
+// let message = "";
+
+// if (status === "Placed") {
+//   subject = "From Aqualogica: Order Confirmed ";
+//   message = `Your order has been placed successfully. We will notify you once it is shipped.`;
+// }
+
+// if (status === "Shipped") {
+//   subject = "From Aqualogica: Order Shipped";
+//   message = ` Your order has been shipped. You can expect delivery soon!`;
+// }
+// if (status === "Delivered") {
+//   subject = "From Aqualogica: Order Delivered";
+//   message = `Your order  has been delivered.Thank you for shopping with us!`;
+// }
+
+
+// const mailOptions = {
+//   from: "bhoomikarai147@gmail.com",
+//   to: email,
+//   subject,
+//   text: message,
+// };
+// await transporter.sendMail(mailOptions);
+// };
 
 // const storage = multer.diskStorage({
 //   destination: (req, file, cb) => cb(null, "uploads/"),
@@ -237,19 +430,20 @@ app.post("/order", async (req, res) => {
 try {
 const { products, totalAmount, address, paymentMethod, paymentId, email } = req.body;
 const order = await OrderModel.create({
-  products,
-  totalAmount,
-  address,
-  paymentMethod,
-  paymentId,
-  email,
-});
-await CartModel.deleteMany({email});
-await sendOrderEmail(
+products,
+totalAmount,
+address,
+paymentMethod,
+paymentId,
 email,
-"Placed",
-order._id
-);
+});
+
+await CartModel.deleteMany({ email });
+
+const populatedOrder = await OrderModel.findById(order._id)
+.populate("products.productId");
+
+await sendOrderEmail(email, "Placed", populatedOrder);
 res.json({ message: "Order placed", order });
 } catch (err) {
 console.error(err);
@@ -268,8 +462,8 @@ orders = await OrderModel.find().populate("products.productId");
 }
 res.json(orders);
 } catch (err) {
-    console.error(err);
-    res.status(500).json(err);
+  console.error(err);
+  res.status(500).json(err);
   }
 });
 
@@ -283,11 +477,12 @@ if (!order) return res.json("Order not found");
 order.status = status;
 await order.save();
 if (status === "Shipped" || status === "Delivered") {
-await sendOrderEmail(
-order.address.email,
-status,
-order._id
-);
+// await sendOrderEmail(
+// order.address.email,
+// status,
+// order._id
+// );
+await sendOrderEmail(order.email, status, order);
 }
 res.json(order);
 } catch (err) {
@@ -370,6 +565,15 @@ if (expectedSignature === razorpay_signature) {
     console.error(err);
     res.status(500).json({ success: false });
 }
+});
+
+app.get("/users", async (req, res) => {
+  try {
+    const users = await UserModel.find();
+    res.json(users);
+  } catch (err) {
+    res.status(500).json(err);
+  }
 });
 
 const PORT = process.env.PORT || 5000;
