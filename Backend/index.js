@@ -233,7 +233,7 @@ filename: `invoice_${order._id}.pdf`,
 content: pdfBuffer,
     });
   }
-
+ 
 const mailOptions = {
 from: process.env.EMAIL_USER,
 to: email,
