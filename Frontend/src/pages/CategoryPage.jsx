@@ -25,6 +25,9 @@ products.map((product) => (
 <h3>{product.title}</h3>
 <p>Rs.{product.price}</p>
 <p>Rating {product.rating}</p>
+<p className="product-description">
+{product.description}
+</p>
 </div>
 ))
 ) : (

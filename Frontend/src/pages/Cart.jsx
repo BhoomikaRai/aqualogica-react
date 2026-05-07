@@ -31,8 +31,7 @@ fetchCart();
 const removeItem = async (id) => {
 try {
 const user = JSON.parse(localStorage.getItem("user"));
-await axios.delete(`
-    /cart/${id}?email=${user.email}`);
+await axios.delete(`${import.meta.env.VITE_API_URL}/cart/${id}?email=${user.email}`);
 fetchCart();
 } catch (err) {
 console.error(err);

@@ -54,7 +54,7 @@ return (
 <h2>{product.title}</h2>
 <p className="price">Rs.{product.price}</p>
 <p>Rating {product.rating}</p>
-
+<p className="description">{product.description}</p>
 <div className="quantity">
 <button onClick={decreaseQty}>-</button>
 <span>{qty}</span>

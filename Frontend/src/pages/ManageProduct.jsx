@@ -42,6 +42,7 @@ return (
   <th>Price</th>
   <th>Quantity</th>
   <th>Rating</th>
+  <th>Description</th>
   <th>Image</th>
   <th>Action</th>
 </tr>
@@ -55,6 +56,7 @@ return (
 <td>{product.price}</td>
 <td>{product.quantity}</td>
 <td>{product.rating}</td>
+<td className="description-cell">{product.description}</td>
 <td><img src={product.imageUpload} alt={product.title} /></td>
 <td>
 <button className="edit-btn" onClick={()=>navigate(`/EditProduct/${product._id}`)} >Edit </button>

@@ -9,6 +9,7 @@ const [category, setCategory] = useState("");
 const [price, setPrice] = useState("");
 const [quantity, setQuantity] = useState("");
 const [rating, setRating] = useState("");
+const [description, setDescription] = useState("");
 const handleSubmit = (e) => {
   e.preventDefault();
   const formData = new FormData();
@@ -18,6 +19,7 @@ const handleSubmit = (e) => {
   formData.append("price", price);
   formData.append("quantity", quantity);
   formData.append("rating", rating);
+  formData.append("description", description);
   axios.post(`${import.meta.env.VITE_API_URL}/addproduct`, formData, {
     headers: {
       "Content-Type": "multipart/form-data"
@@ -65,6 +67,10 @@ return (
 <div className="form">
 <label>Rating</label>
 <input type="number"placeholder="Enter rating"value={rating}onChange={(e) => setRating(e.target.value)}required/>
+</div>
+<div className="form">
+<label>Description</label>
+<textarea placeholder="Enter description" value={description} onChange={(e) => setDescription(e.target.value)}required></textarea>
 </div>
 <button type="submit" className="btn">Add Product</button>
 </form>

@@ -313,6 +313,7 @@ app.post("/addproduct", upload.single("image"), async (req, res) => {
     price: req.body.price,
     quantity: req.body.quantity,
     rating: req.body.rating,
+    description: req.body.description,
   };
   const product = await ProductModel.create(productDetail);
   res.json(product);
@@ -339,13 +340,14 @@ app.get("/addproduct/:id", async (req, res) => {
 
 app.put("/addproduct/:id", upload.single("image"), async (req, res) => {
 try {
-const { title, price, rating, category, quantity } = req.body;
+const { title, price, rating, category, quantity, description } = req.body;
 const updateData = {
   title,
   price,
   rating,
   category,
   quantity,
+  description,
   };
 if (req.file) {
 updateData.imageUpload = req.file.path;

@@ -6,5 +6,6 @@ category: String,
 price: Number,
 quantity: Number,
 rating: Number,
+description: String,
 });
 module.exports = mongoose.model("products", ProductSchema);

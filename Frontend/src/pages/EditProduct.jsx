@@ -12,10 +12,11 @@ function EditProduct() {
     category:"",
     price:"",
     quantity:"",
-    rating:""
+    rating:"",
+    description:""
 
    });
- const { title, category, price, quantity, rating } = product;
+ const { title, category, price, quantity, rating, description } = product;
 
 
 useEffect(()=>{
@@ -39,6 +40,7 @@ const handleSubmit = (e) => {
   formData.append("price",product.price);
   formData.append("quantity",product.quantity);
   formData.append("rating",product.rating);
+  formData.append("description",product.description);
   axios.put(`${import.meta.env.VITE_API_URL}/addproduct/${id}`, formData)
 .then(() => {
 alert("Product Updated Successfully");
@@ -84,6 +86,10 @@ return (
 <div className="form">
 <label>Rating</label>
 <input type="number"name="rating"placeholder="Enter rating"value={rating}onChange={handleChange}/>
+</div>
+<div className="form">
+<label>Description</label>
+<textarea placeholder="Enter description" value={description}onChange={handleChange}required></textarea>
 </div>
 <button type="submit" className="btn">Update Product</button>
 </form>
