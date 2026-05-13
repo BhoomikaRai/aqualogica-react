@@ -11,6 +11,7 @@ const navigate = useNavigate();
 const handleSubmit = (e) => {
 e.preventDefault();
 if (email === "admin@gmail.com" && password === "admin") {
+alert("Login Successful");
 localStorage.setItem("user",JSON.stringify({email,isAdmin: true,}));
 navigate("/dashboard");
 return;
@@ -20,6 +21,7 @@ axios.post(`${import.meta.env.VITE_API_URL}/login`, { email, password })
 .then((result) => {
 console.log(result);
 if (result.data === "Success") {
+    alert("Login Successful");
 localStorage.setItem("user",JSON.stringify({email,isAdmin: false,}));
 navigate("/");
 } else {

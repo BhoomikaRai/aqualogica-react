@@ -63,7 +63,7 @@ Routine
 
 <li onClick={() => navigate("/skin-concern")}>Skin Concern</li>
 <li onClick={() => navigate("/our-story")}>Our Story</li>
-<li onClick={() => navigate("/track-order")}>Track Order</li>
+
 <li onClick={() => navigate("/water-for-all")}>Water for All</li>
 <li onClick={() => navigate("/need-help")}>Need Help?</li>
 </ul>

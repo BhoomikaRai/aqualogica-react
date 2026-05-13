@@ -245,40 +245,7 @@ attachments,
 await transporter.sendMail(mailOptions);
 };
 
-// const sendOrderEmail = async (email, status, orderId) => {
-// let subject = "";
-// let message = "";
 
-// if (status === "Placed") {
-//   subject = "From Aqualogica: Order Confirmed ";
-//   message = `Your order has been placed successfully. We will notify you once it is shipped.`;
-// }
-
-// if (status === "Shipped") {
-//   subject = "From Aqualogica: Order Shipped";
-//   message = ` Your order has been shipped. You can expect delivery soon!`;
-// }
-// if (status === "Delivered") {
-//   subject = "From Aqualogica: Order Delivered";
-//   message = `Your order  has been delivered.Thank you for shopping with us!`;
-// }
-
-
-// const mailOptions = {
-//   from: "bhoomikarai147@gmail.com",
-//   to: email,
-//   subject,
-//   text: message,
-// };
-// await transporter.sendMail(mailOptions);
-// };
-
-// const storage = multer.diskStorage({
-//   destination: (req, file, cb) => cb(null, "uploads/"),
-//   filename: (req, file, cb) =>
-//     cb(null, Date.now() + "-" + file.originalname),
-// });
-// const upload = multer({ storage });
 
 app.post('/login', (req, res) => {
 const { email, password } = req.body;
@@ -479,11 +446,7 @@ if (!order) return res.json("Order not found");
 order.status = status;
 await order.save();
 if (status === "Shipped" || status === "Delivered") {
-// await sendOrderEmail(
-// order.address.email,
-// status,
-// order._id
-// );
+
 await sendOrderEmail(order.email, status, order);
 }
 res.json(order);
