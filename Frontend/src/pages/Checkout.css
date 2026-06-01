@@ -1,37 +1,127 @@
 
-.checkoutcontainer {
+.checkoutcontainer{
   display: flex;
-  gap: 20px;
-  padding: 20px;
+  gap: 30px;
+  padding: 50px;
+  background: #f8f9fa;
+  min-height: 100vh;
 }
-.checkout {
+
+
+.checkout{
   flex: 2;
+  background: white;
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.08);
 }
-.ordersummary {
-  flex: 1;
-  border: 1px solid black;
+
+.checkout h1{
+  margin-bottom: 25px;
+  color: #222;
+  font-size: 32px;
+}
+
+/* Input Fields */
+.checkout input{
+  width: 100%;
+  padding: 14px 16px;
+  margin: 10px 0;
+  border: 2px solid #e0e0e0;
+  border-radius: 10px;
+  font-size: 16px;
+  outline: none;
+  transition: 0.3s ease;
+}
+
+.checkout input:focus{
+  border-color: darkblue;
+  box-shadow: 0 0 10px rgba(21,101,192,0.2);
+}
+
+/* Place Order Button */
+.checkout button{
+  width: 100%;
   padding: 15px;
-}
-.checkout input {
-  width: 100%;
-  padding: 10px;
-  margin: 8px 0;
-  border: 1px solid black;
-}
-.checkout button {
-  width: 100%;
-  padding: 12px;
-  background: darkblue;
-  color: white;
+  margin-top: 20px;
   border: none;
-  margin-top: 10px;
+  border-radius: 10px;
+  background: linear-gradient(135deg,darkblue,#0d47a1);
+  color: white;
+  font-size: 18px;
+  font-weight: 600;
   cursor: pointer;
+  transition: all 0.3s ease;
 }
-.summaryitem {
+
+.checkout button:hover{
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(21,101,192,0.3);
+}
+
+/* Order Summary */
+.ordersummary{
+  flex: 1;
+  background: white;
+  padding: 25px;
+  border-radius: 20px;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+  height: fit-content;
+  position: sticky;
+  top: 20px;
+}
+
+.ordersummary h2{
+  margin-bottom: 20px;
+  color: #222;
+  font-size: 28px;
+  text-align: center;
+}
+
+.ordersummary h2::after{
+  content: "";
+  width: 60px;
+  height: 4px;
+  background: darkblue;
+  display: block;
+  margin: 8px auto;
+  border-radius: 10px;
+}
+
+/* Product Summary */
+.summaryitem{
   display: flex;
   justify-content: space-between;
-  margin: 8px 0;
+  align-items: center;
+  padding: 12px 0;
+  border-bottom: 1px solid #eee;
+  font-size: 16px;
 }
-.ordersummary h2 {
-  margin-top: 10px;
+
+.summaryitem:last-child{
+  border-bottom: none;
+}
+
+/* Total Section */
+.total{
+  margin-top: 20px;
+  padding-top: 15px;
+  border-top: 2px solid #ddd;
+  display: flex;
+  justify-content: space-between;
+  font-size: 22px;
+  font-weight: 700;
+  color: darkblue;
+}
+
+/* Responsive */
+@media(max-width: 900px){
+  .checkoutcontainer{
+    flex-direction: column;
+    padding: 20px;
+  }
+
+  .ordersummary{
+    position: static;
+  }
 }

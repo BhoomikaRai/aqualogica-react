@@ -23,8 +23,8 @@ products.map((product) => (
 <div className="productcard"key={product._id}onClick={() => navigate(`/product/${product._id}`)}>
 <img src={product.imageUpload} alt={product.title} className="productimg"/>
 <h3>{product.title}</h3>
-<p>Rs.{product.price}</p>
-<p>Rating {product.rating}</p>
+<p>₹{product.price}</p>
+<p>⭐ {product.rating}</p>
 <p className="product-description">
 {product.description}
 </p>

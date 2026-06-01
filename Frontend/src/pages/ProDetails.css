@@ -1,51 +1,149 @@
-.details {
+.details{
+  max-width: 900px;
+  margin: 50px auto;
+  padding: 40px;
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
 }
-.productimage {
-  width: 300px;
-  margin-bottom: 20px;
-}
-.details h2 {
-  font-size: 24px;
-  margin-bottom: 15px;
-}
-.price {
-  font-size: 22px;
-  font-weight: bold;
-  margin-bottom: 5px;
-}
-.details button {
-  padding: 10px 20px;
-  background-color: darkblue;
-  color: white;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
+
+.productimage{
+  width: 320px;
+  height: 320px;
+  object-fit: contain;
+  margin-bottom: 25px;
+  transition: transform 0.3s ease;
 }
 
-.btns {
-  display: flex;
-  gap: 50px;
-  margin-top: 15px; 
-  margin-bottom: 15px;
- 
+.productimage:hover{
+  transform: scale(1.05);
 }
-.quantity {
+
+.details h2{
+  font-size: 32px;
+  color: #222;
+  margin-bottom: 15px;
+  font-weight: 600;
+}
+
+
+.price{
+  font-size: 30px;
+  font-weight: 700;
+  color: #1565c0;
+  margin-bottom: 10px;
+}
+
+
+.details p{
+  color: #666;
+  font-size: 17px;
+  line-height: 1.6;
+  margin-bottom: 15px;
+}
+
+
+.quantity{
   display: flex;
   align-items: center;
-  gap: 10px;
-  margin: 15px 0;
+  gap: 15px;
+  margin: 20px 0;
 }
 
-.quantity button {
-  padding: 5px 12px;
-  font-size: 18px;
+.quantity button{
+  width: 40px;
+  height: 40px;
+  border: none;
+  border-radius: 50%;
+  background: #1565c0;
+  color: white;
+  font-size: 20px;
   cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.quantity button:hover{
+  background: #0d47a1;
+  transform: scale(1.1);
+}
+
+.quantity span{
+  font-size: 22px;
+  font-weight: 600;
+  min-width: 30px;
 }
 
 
+.btns{
+  display: flex;
+  gap: 20px;
+  margin-top: 25px;
+  flex-wrap: wrap;
+}
+
+.btns button{
+  padding: 14px 28px;
+  border: none;
+  border-radius: 10px;
+  font-size: 17px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
 
 
+.btns button:first-child{
+  background: linear-gradient(135deg,#1565c0,#0d47a1);
+  color: white;
+}
+
+.btns button:first-child:hover{
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(21,101,192,0.3);
+}
+
+
+.btns button:last-child{
+  background: #ff9800;
+  color: white;
+}
+
+.btns button:last-child:hover{
+  background: #f57c00;
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(255,152,0,0.3);
+}
+
+
+@media (max-width: 768px){
+  .details{
+    margin: 20px;
+    padding: 25px;
+  }
+
+  .productimage{
+    width: 250px;
+    height: 250px;
+  }
+
+  .details h2{
+    font-size: 26px;
+  }
+
+  .price{
+    font-size: 24px;
+  }
+
+  .btns{
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .btns button{
+    width: 100%;
+  }
+}

@@ -20,11 +20,22 @@ return;
 axios.post(`${import.meta.env.VITE_API_URL}/login`, { email, password })
 .then((result) => {
 console.log(result);
-if (result.data === "Success") {
-    alert("Login Successful");
-localStorage.setItem("user",JSON.stringify({email,isAdmin: false,}));
-navigate("/");
-} else {
+
+if (result.data.message === "Success") {
+  alert("Login Successful");
+
+  localStorage.setItem(
+    "user",
+    JSON.stringify({
+      name: result.data.user.name,
+      email: result.data.user.email,
+      isAdmin: false,
+    })
+  );
+
+  navigate("/");
+}
+else {
 alert("Invalid credentials");
 }
 })

@@ -1,25 +1,139 @@
-.manageorders {
-  padding: 20px;
-}
-.manageorders h2 {
-  text-align: center;
-  margin-bottom: 20px;
+
+.manageorders{
+  padding: 30px;
+  background: #f8f9fa;
+  min-height: 100vh;
 }
 
-.manageorders table {
-  width: 100%;
-  
-}
-.manageorders th, td {
-  border: 1px solid black;
-  padding: 10px;
-}
-.manageorders th {
-  background-color: black;
-  color: white;
-}
-select {
-  padding: 5px;
+.manageorders h2{
   text-align: center;
- 
+  font-size: 36px;
+  color: darkblue;
+  margin-bottom: 30px;
+}
+
+.manageorders h2::after{
+  content: "";
+  width: 80px;
+  height: 4px;
+  background: darkblue;
+  display: block;
+  margin: 10px auto;
+  border-radius: 10px;
+}
+
+
+.orders-table-wrapper{
+  background: white;
+  border-radius: 20px;
+  overflow-x: auto;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+}
+
+.manageorders table{
+  width: 100%;
+  border-collapse: collapse;
+}
+
+
+.manageorders th{
+  background: linear-gradient(135deg,darkblue,#0d47a1);
+  color: white;
+  padding: 16px;
+  text-align: center;
+  font-size: 17px;
+  font-weight: 600;
+}
+
+
+.manageorders td{
+  padding: 15px;
+  text-align: center;
+  border-bottom: 1px solid #eee;
+  color: #444;
+  font-size: 15px;
+}
+
+.manageorders tr:hover{
+  background: #f5f9ff;
+}
+
+select{
+  padding: 10px 14px;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  background: white;
+  cursor: pointer;
+  font-size: 14px;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+select:focus{
+  border-color: #1565c0;
+  box-shadow: 0 0 10px rgba(21,101,192,0.2);
+}
+
+.status-pending{
+  color: #ef6c00;
+  font-weight: 600;
+}
+
+.status-shipped{
+  color: #1565c0;
+  font-weight: 600;
+}
+
+.status-delivered{
+  color: #2e7d32;
+  font-weight: 600;
+}
+
+.status-cancelled{
+  color: #c62828;
+  font-weight: 600;
+}
+
+
+.update-btn{
+  padding: 10px 16px;
+  border: none;
+  border-radius: 8px;
+  background: #1565c0;
+  color: white;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.update-btn:hover{
+  background: #0d47a1;
+  transform: translateY(-2px);
+}
+
+
+@media(max-width: 768px){
+
+  .manageorders{
+    padding: 15px;
+  }
+
+  .manageorders h2{
+    font-size: 28px;
+  }
+
+  .manageorders table{
+    min-width: 900px;
+  }
+
+  .manageorders th,
+  .manageorders td{
+    padding: 10px;
+    font-size: 14px;
+  }
+
+  select{
+    padding: 8px;
+    font-size: 13px;
+  }
 }

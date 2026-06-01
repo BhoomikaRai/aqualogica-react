@@ -247,21 +247,33 @@ await transporter.sendMail(mailOptions);
 
 
 
-app.post('/login', (req, res) => {
-const { email, password } = req.body;
-UserModel.findOne({ email: email })
-.then(user => {
-if (user) {
-if (user.password === password) {
-res.json("Success")
-} else {
-res.json("The password is incorrect")
-}
-} else {
-res.json("No user found")
-}
-})       
-})
+app.post("/login", async (req, res) => {
+  try {
+    const { email, password } = req.body;
+
+    const user = await UserModel.findOne({ email });
+
+    if (!user) {
+      return res.json("No user found");
+    }
+
+    if (user.password !== password) {
+      return res.json("The password is incorrect");
+    }
+
+    res.json({
+      message: "Success",
+      user: {
+        name: user.name,
+        email: user.email,
+      },
+    });
+
+  } catch (err) {
+    console.error(err);
+    res.status(500).json(err);
+  }
+});
 
 app.post("/register", async (req, res) => {
 try {

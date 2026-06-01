@@ -55,7 +55,32 @@ return (
 <td>
 Rs {product?.price || 0} * {p.quantity} = Rs {(product?.price || 0) * p.quantity}
 </td>
-<td>{order.status}</td>
+<td>
+  <div className="tracking-status">
+    <span className="step active">Placed</span>
+
+    <span
+      className={
+        order.status === "Shipped" ||
+        order.status === "Delivered"
+          ? "step active"
+          : "step"
+      }
+    >
+      Shipped
+    </span>
+
+    <span
+      className={
+        order.status === "Delivered"
+          ? "step active"
+          : "step"
+      }
+    >
+      Delivered
+    </span>
+  </div>
+</td>
 
 <td>₹{order.totalAmount.toFixed(2)}</td>
 
